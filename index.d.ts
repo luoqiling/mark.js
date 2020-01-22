@@ -19,6 +19,10 @@ interface IRangeData {
   endRange: { node: Node, offset: number }
 }
 
+interface IInnerData {
+  points?: number[]
+}
+
 export interface IProofreadData extends IData {
   points: number[]
   key: number
@@ -26,6 +30,10 @@ export interface IProofreadData extends IData {
 }
 
 export interface IProofread {
+  textareaElem: HTMLElement
+
+  innerData: IInnerData
+
   getContent(): string
 
   innerText(): string
