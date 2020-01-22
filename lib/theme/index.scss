@@ -1,0 +1,67 @@
+$alias: '.proofread';
+
+#{$alias}-modify {
+  background-color: red !important;
+}
+
+#{$alias}-missing {
+  border: 2px solid red !important;
+}
+
+#{$alias}-exchange {
+  $i_borderColor: red;
+  $i_borderWidth: 2px;
+
+  i{
+    font-style: normal;
+    border-style: solid !important;
+    border-color: $i_borderColor !important;
+    border-width: 0 !important;
+
+    &.left{
+      border-left-width: $i_borderWidth !important;
+    }
+  
+    &.right{
+      border-right-width: $i_borderWidth !important;
+    }
+  
+    &.top{
+      border-top-width: $i_borderWidth !important;
+    }
+  
+    &.bottom{
+      border-bottom-width: $i_borderWidth !important;
+    }
+  
+    &.focus{
+      border-top-width: $i_borderWidth !important;
+      position: relative;
+    }
+  
+    &.focus1{
+      border-right-width: $i_borderWidth !important;
+    }
+  
+    &.focus2{
+      border-left-width: $i_borderWidth !important;
+    }
+  
+    &.focus:after{
+      content: "";
+      width: $i_borderWidth;
+      height: $i_borderWidth;
+      position: absolute;
+      bottom: -$i_borderWidth;
+      background: red;
+    }
+    
+    &.focus1:after{
+      right: -$i_borderWidth;
+    }
+  
+    &.focus2:after{
+      left: -$i_borderWidth;
+    }
+  }
+}
