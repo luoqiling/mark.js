@@ -3,27 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>Proofread Examples Demo</title>
-    <style>
-      main {
-        width: 50%;
-        margin: 0 auto;
-      }
-      .btns {
-        margin-bottom: 10px;
-      }
-      .textarea {
-        width: 100%;
-        border: 1px solid #000;
-        outline: none;
-      }
-      .textarea p {
-        text-align: justify;
-      }
-    </style>
     <link rel="stylesheet" href="../../dist/proofread.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./dialog.css">
   </head>
   <body>
     <main>
+      <div class="btns">
+        <button id="modify">修改</button>
+        <button id="exchange">互换</button>
+      </div>
       <div id="textarea" class="textarea" contenteditable="true">
         <p>广东是岭南文化的重要传承地。</p>
         <p>在语言、风俗、生活习惯和历史文化等方面都有着独特风格。</p>
@@ -34,19 +23,8 @@
       </div>
     </main>
     <script src="../../dist/proofread.js"></script>
-    <script>
-      var proofread = new Proofread(document.querySelector('#textarea'))
-
-      var proofreadList = [
-        {"content":"广东是岭南文化","startOffset":0,"endOffset":7,"length":7,"points":[],"key":1580531678823,"type":"modify"},
-        {"content":"缺漏","startOffset":14,"endOffset":14,"length":0,"points":[],"key":1587189587082,"type":"missing"},
-        {"content":"缺漏","startOffset":15,"endOffset":15,"length":0,"points":[],"key":1586235321090,"type":"missing"},
-        {"content":"古代“粤”、“越”通用","startOffset":73,"endOffset":84,"length":11,"points":[4,5],"key":1580395051742,"type":"exchange"},
-        {"content":"南越","startOffset":155,"endOffset":157,"length":2,"points":[0],"key":1582243724962,"type":"exchange"},
-        {"content":"就是多种文化汇合并存的地方。\n广东历史久远，","startOffset":288,"endOffset":310,"length":22,"points":[],"key":1583069222325,"type":"modify"}
-      ]
-
-      proofread.markAll(proofreadList)
-    </script>
+    <script src="./dialog.js"></script>
+    <script src="./index.js"></script>
+    <script></script>
   </body>
 </html>

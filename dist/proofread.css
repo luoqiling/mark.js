@@ -4,6 +4,7 @@
 
 .proofread-missing {
   border: 2px solid red !important;
+  padding: 0 2px;
 }
 
 .proofread-exchange i {

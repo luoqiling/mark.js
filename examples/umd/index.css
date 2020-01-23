@@ -1,0 +1,15 @@
+main {
+  width: 50%;
+  margin: 0 auto;
+}
+.btns {
+  margin-bottom: 10px;
+}
+.textarea {
+  width: 100%;
+  border: 1px solid #000;
+  outline: none;
+}
+.textarea p {
+  text-align: justify;
+}
