@@ -6,6 +6,7 @@ $alias: '.proofread';
 
 #{$alias}-missing {
   border: 2px solid red !important;
+  padding: 0 2px;
 }
 
 #{$alias}-exchange {
