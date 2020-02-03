@@ -1,7 +1,7 @@
 # proofread
 
 ## 简介
-proofread是一个校对工具，即在富文本里标注文字，目前支持的校对类型有文字涂改、文字缺漏和文字互换。
+proofread是一个校对工具，即在富文本里校对错误文案，目前提供的校对类型有文字标记、文字缺漏和文字互换。
 
 [在线预览](https://luobin01.github.io/proofread/examples/umd/)
 
