@@ -1,64 +1,58 @@
-interface IData {
-  content: string
-  startOffset: number
-  endOffset: number
-  length: number
+declare namespace Proofread {
+  export interface IData {
+    content: string
+    startOffset: number
+    endOffset: number
+    length: number
+  }
+
+  export interface IProofreadData extends IData {
+    points: number[]
+    key: number
+    type: string
+  }
+
+  export interface IOptions {
+    points?: number[]
+  }
+
+  export interface ISearchOptions {
+    afterEach?(data: IProofreadData): void
+    after?(): void
+  }
+
+  export interface IRangeData {
+    startRange: { node: Node, offset: number },
+    endRange: { node: Node, offset: number }
+  }
 }
 
-interface ISearchOptions {
-  afterEach?(data: IProofreadData): void
-  after?(): void
+declare class Proofread {
+  constructor(textareaElem: HTMLElement | null)
+
+  public getContent(): string
+
+  public innerText(): string
+
+  public mark(type: string, options?: Proofread.IOptions): Promise<Proofread.IProofreadData>
+
+  public markAll(list: Array<Proofread.IProofreadData>, options?: Proofread.ISearchOptions): void
+
+  private textareaElem: HTMLElement
+
+  private innerData: Proofread.IOptions
+
+  private _mark(type: string): Promise<Proofread.IProofreadData>
+
+  private _getElems(): NodeListOf<HTMLElement>
+
+  private _setElems(elems: NodeListOf<HTMLElement>, data: Proofread.IProofreadData): void
+
+  private _drawExchange(data: Proofread.IProofreadData): void
+
+  private _getData(startElem: HTMLElement, endElem: HTMLElement): Proofread.IData
+
+  private _getRangeData(data: Proofread.IProofreadData): Proofread.IRangeData
 }
 
-interface IMarkOptions {
-  points?: number[]
-}
-
-interface IRangeData {
-  startRange: { node: Node, offset: number },
-  endRange: { node: Node, offset: number }
-}
-
-interface IInnerData {
-  points?: number[]
-}
-
-export interface IProofreadData extends IData {
-  points: number[]
-  key: number
-  type: string
-}
-
-export interface IProofread {
-  textareaElem: HTMLElement
-
-  innerData: IInnerData
-
-  getContent(): string
-
-  innerText(): string
-
-  mark(type: string, options?: IMarkOptions): Promise<IProofreadData>
-
-  markAll(list: Array<IProofreadData>, options?: ISearchOptions): void
-
-  _mark(type: string): Promise<IProofreadData>
-
-  _getElems(): NodeListOf<HTMLFontElement>
-
-  _setElems(elems: NodeListOf<HTMLFontElement>, data: IProofreadData): void
-
-  _drawExchange(data: IProofreadData): void
-
-  _getData(startElem: HTMLFontElement, endElem: HTMLFontElement): IData
-
-  _getRangeData(data: IProofreadData): IRangeData
-}
-
-interface IProofreadConstructor {
-  new (textareaElem: HTMLElement | null): IProofread
-}
-
-declare const Proofread: IProofreadConstructor
-
-export default Proofread
+export = Proofread

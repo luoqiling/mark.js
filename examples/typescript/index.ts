@@ -1,10 +1,10 @@
 import './index.scss'
-import Proofread, { IProofread, IProofreadData } from '../../index'
+import Proofread, { IProofreadData } from '../../index'
 import '../../lib/theme/index.scss'
 
 const $modify: HTMLElement | null = document.querySelector('#modify')
 const $exchange: HTMLElement | null = document.querySelector('#exchange')
-const proofread: IProofread = new Proofread(document.querySelector('#textarea'))
+const proofread = new Proofread(document.querySelector('#textarea'))
 
 console.log(proofread.innerText())
 
@@ -18,7 +18,7 @@ const proofreadList: Array<IProofreadData> = [
 ]
 
 proofread.markAll(proofreadList, {
-  afterEach(data) {
+  afterEach(data: IProofreadData) {
     console.log(JSON.stringify(data))
   },
   after() {
