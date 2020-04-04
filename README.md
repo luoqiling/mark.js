@@ -3,7 +3,7 @@
 ## 简介
 `proofread`是一个校对工具，即在富文本里校对错误文案，目前提供的校对类型有文字标记、文字缺漏和文字互换。
 
-结合工具[draw](https://github.com/luobin01/draw)可以校对文章中的图片和视频。
+结合工具[`draw`](https://github.com/luobin01/draw)可以校对文章中的图片和视频。
 
 ## 预览
 
