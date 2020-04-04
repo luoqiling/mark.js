@@ -9,7 +9,41 @@
 
 [请狠狠地点这里](https://luobin01.github.io/proofread/examples/umd/)
 
+## 示例
+
+````
+const proofread = new Proofread(document.querySelector('xxx'))
+
+// 标记所有
+proofread.markAll(proofreadDataList)
+
+// 文字标记、文字缺漏
+proofread.mark('modify').then(data => {
+  console.log(data)
+})
+
+// 文字互换
+proofread.mark('exchange', { points }).then(data => {
+  console.log(data)
+})
+````
+
+## 校对数据
+
+````
+{
+  content: string       // 选中文字
+  startOffset: number   // 光标起点
+  endOffset: number     // 光标结点
+  length: number        // 选中文字的长度
+  points: number[]      // 选中文字的互换点
+  key: number           // 唯一标识
+  type: string          // 校对类型
+}
+````
+
 ## 命令行
+
 ````
 # 本地运行
 yarn serve
@@ -22,19 +56,6 @@ yarn build
 
 # 代码格式检查并自动修复
 yarn lint
-````
-
-## 校对数据
-````
-{
-  content: string       // 选中文字
-  startOffset: number   // 光标起点
-  endOffset: number     // 光标结点
-  length: number        // 选中文字的长度
-  points: number[]      // 选中文字的互换点
-  key: number           // 唯一标识
-  type: string          // 校对类型
-}
 ````
 
 ## 兼容性
