@@ -9,12 +9,38 @@ main {
 
 .textarea {
   width: 100%;
+  box-sizing: border-box;
   border: 1px solid #000;
   outline: none;
+  margin-bottom: 10px;
 }
 
 .textarea p {
   text-align: justify;
+}
+
+table, th, td {
+  border: 1px solid #000;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+td:last-child {
+  text-align: left;
+}
+
+th, td {
+  padding: 5px;
+  font-weight: normal;
+}
+
+caption {
+  font-weight: bold;
+  letter-spacing: 5px;
 }
 
 .dialog {

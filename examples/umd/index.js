@@ -1,4 +1,5 @@
 var proofread = new Proofread(document.querySelector('#textarea'))
+var $tbody = document.querySelector('#tbody')
 
 var proofreadList = [
   {"content":"广东是岭南文化","startOffset":0,"endOffset":7,"length":7,"points":[],"key":1580531678823,"type":"modify"},
@@ -9,7 +10,15 @@ var proofreadList = [
   {"content":"就是多种文化汇合并存的地方。\n广东历史久远，","startOffset":288,"endOffset":310,"length":22,"points":[],"key":1583069222325,"type":"modify"}
 ]
 
-proofread.markAll(proofreadList)
+proofread.markAll(proofreadList, {
+  afterEach(data) {
+    console.log(JSON.stringify(data))
+    renderTbody(data)
+  },
+  after() {
+    console.log('all mark finish')
+  }
+})
 
 var $modify = document.querySelector('#modify')
 var $exchange = document.querySelector('#exchange')
@@ -17,6 +26,7 @@ var $exchange = document.querySelector('#exchange')
 $modify.addEventListener('click', () => {
   proofread.mark('modify').then(data => {
     console.log(JSON.stringify(data))
+    renderTbody(data)
   })
 })
 
@@ -47,6 +57,7 @@ $exchange.addEventListener('click', () => {
         if (points.length > 0) {
           proofread.mark('exchange', { points }).then(data => {
             console.log(JSON.stringify(data))
+            renderTbody(data)
           })
         }
       }
@@ -70,3 +81,20 @@ $exchange.addEventListener('click', () => {
     }
   }
 })
+
+function renderTbody(data) {
+  if ($tbody) {
+    const innerStr = $tbody.innerHTML
+    const str =
+    `<tr>
+      <td>${data.key}</td>
+      <td>${data.type}</td>
+      <td>${data.startOffset}</td>
+      <td>${data.endOffset}</td>
+      <td>${data.length}</td>
+      <td>${data.points}</td>
+      <td>${data.content}</td>
+    </tr>`
+    $tbody.innerHTML = innerStr + str
+  }
+}

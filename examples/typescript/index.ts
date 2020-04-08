@@ -4,6 +4,7 @@ import '../../lib/theme/index.scss'
 
 const $modify: HTMLElement | null = document.querySelector('#modify')
 const $exchange: HTMLElement | null = document.querySelector('#exchange')
+const $tbody: HTMLElement | null = document.querySelector('#tbody')
 const proofread = new Proofread(document.querySelector('#textarea'))
 
 console.log(proofread.innerText())
@@ -20,6 +21,7 @@ const proofreadList: Array<IProofreadData> = [
 proofread.markAll(proofreadList, {
   afterEach(data: IProofreadData) {
     console.log(JSON.stringify(data))
+    renderTbody(data)
   },
   after() {
     console.log('all mark finish')
@@ -30,6 +32,7 @@ if ($modify) {
   $modify.addEventListener('click', () => {
     proofread.mark('modify').then(data => {
       console.log(JSON.stringify(data))
+      renderTbody(data)
     })
   })
 }
@@ -62,6 +65,7 @@ if ($exchange) {
           if (points.length > 0) {
             proofread.mark('exchange', { points }).then(data => {
               console.log(JSON.stringify(data))
+              renderTbody(data)
             })
           }
         }
@@ -122,4 +126,21 @@ function dialog(options: any){
   }
 
   return divElem
+}
+
+function renderTbody(data: IProofreadData) {
+  if ($tbody) {
+    const innerStr = $tbody.innerHTML
+    const str =
+    `<tr>
+      <td>${data.key}</td>
+      <td>${data.type}</td>
+      <td>${data.startOffset}</td>
+      <td>${data.endOffset}</td>
+      <td>${data.length}</td>
+      <td>${data.points}</td>
+      <td>${data.content}</td>
+    </tr>`
+    $tbody.innerHTML = innerStr + str
+  }
 }
