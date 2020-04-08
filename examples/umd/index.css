@@ -4,6 +4,13 @@ main {
 }
 .btns {
   margin-bottom: 10px;
+  text-align: center;
+}
+.btns button {
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 0 5px;
+  cursor: pointer;
 }
 .textarea {
   width: 100%;
