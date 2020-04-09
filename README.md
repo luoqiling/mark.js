@@ -14,8 +14,8 @@
 ````
 const proofread = new Proofread(document.querySelector('xxx'))
 
-// 标记所有
-proofread.markAll(proofreadDataList)
+// 自动标记
+proofread.automark(proofreadDataList)
 
 // 文字标记、文字缺漏
 proofread.mark('modify').then(data => {

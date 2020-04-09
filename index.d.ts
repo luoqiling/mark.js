@@ -36,7 +36,7 @@ declare class Proofread {
 
   public mark(type: string, options?: Proofread.IOptions): Promise<Proofread.IProofreadData>
 
-  public markAll(list: Array<Proofread.IProofreadData>, options?: Proofread.ISearchOptions): void
+  public automark(list: Array<Proofread.IProofreadData>, options?: Proofread.ISearchOptions): void
 
   private textareaElem: HTMLElement
 

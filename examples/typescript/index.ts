@@ -18,7 +18,7 @@ const proofreadList: Array<IProofreadData> = [
   {"content":"就是多种文化汇合并存的地方。\n广东历史久远，","startOffset":288,"endOffset":310,"length":22,"points":[],"key":1583069222325,"type":"modify"}
 ]
 
-proofread.markAll(proofreadList, {
+proofread.automark(proofreadList, {
   afterEach(data: IProofreadData) {
     console.log(JSON.stringify(data))
     renderTbody(data)
