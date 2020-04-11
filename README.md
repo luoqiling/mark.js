@@ -12,20 +12,18 @@
 ## 示例
 
 ````
-const proofread = new Proofread(document.querySelector('xxx'))
+const proofread = new Proofread(document.querySelector('xxx'), {
+  tagName: 'mark'
+})
 
 // 自动标记
 proofread.automark(proofreadDataList)
 
 // 文字标记、文字缺漏
-proofread.mark('modify').then(data => {
-  console.log(data)
-})
+const data = proofread.mark('modify')
 
 // 文字互换
-proofread.mark('exchange', { points }).then(data => {
-  console.log(data)
-})
+const data = proofread.mark('exchange', { points })
 ````
 
 ## 校对数据
@@ -57,7 +55,3 @@ yarn build
 # 代码格式检查并自动修复
 yarn lint
 ````
-
-## 兼容性
-
-`proofread`主要使用到`document.execCommand`，因此其兼容性参考`execCommand`

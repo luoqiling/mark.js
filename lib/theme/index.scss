@@ -1,5 +1,10 @@
 $alias: '.proofread';
 
+mark {
+  background-color: transparent;
+  color: inherit;
+}
+
 #{$alias}-modify {
   background-color: red !important;
 }

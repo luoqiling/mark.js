@@ -8,7 +8,7 @@ declare namespace Proofread {
 
   export interface IProofreadData extends IData {
     points: number[]
-    key: number
+    key: string
     type: string
   }
 
@@ -34,7 +34,7 @@ declare class Proofread {
 
   public innerText(): string
 
-  public mark(type: string, options?: Proofread.IOptions): Promise<Proofread.IProofreadData>
+  public mark(type: string, options?: Proofread.IOptions): Proofread.IProofreadData
 
   public automark(list: Array<Proofread.IProofreadData>, options?: Proofread.ISearchOptions): void
 
@@ -42,7 +42,7 @@ declare class Proofread {
 
   private innerData: Proofread.IOptions
 
-  private _mark(type: string): Promise<Proofread.IProofreadData>
+  private _mark(type: string): Proofread.IProofreadData
 
   private _getElems(): NodeListOf<HTMLElement>
 
