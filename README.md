@@ -1,7 +1,7 @@
 # proofread
 
 ## 简介
-`proofread`是一个校对工具，即在富文本里校对错误文案，目前提供的校对类型有文字标记、文字缺漏和文字互换。
+`proofread`是一个校对工具，可用于标记选中的文字，目前提供的校对类型有文字涂改、文字缺漏和文字互换。
 
 结合工具[`draw`](https://github.com/luobin01/draw)可以校对文章中的图片和视频。
 
@@ -19,7 +19,7 @@ const proofread = new Proofread(document.querySelector('xxx'), {
 // 自动标记
 proofread.automark(proofreadDataList)
 
-// 文字标记、文字缺漏
+// 文字涂改、文字缺漏
 const data = proofread.mark('modify')
 
 // 文字互换
