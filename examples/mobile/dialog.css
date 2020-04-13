@@ -6,6 +6,9 @@
   top: 0;
   background: rgba(0, 0, 0, .5);
   z-index: 100000;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .dialog-body {
@@ -59,8 +62,9 @@
   border: 1px solid #000;
   margin: 0 0.27rem;
   background: #fff;
-  padding: 0.1rem 0.2rem;
+  padding: 0.15rem 0.3rem;
   font-size: 0.37rem;
   display: block;
   float: right;
+  border-radius: 0.1rem;
 }

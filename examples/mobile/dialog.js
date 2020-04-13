@@ -18,18 +18,20 @@ function dialog(options){
 
   if (divElem) {
     buttons = divElem.querySelectorAll('button')
-    buttons[1].onclick = () => {
+    buttons[0].addEventListener('touchstart', e => {
+      e.preventDefault()
       if (options.sure) {
         options.sure(divElem)
       }
       document.body.removeChild(divElem)
-    }
-    buttons[0].onclick = () => {
+    })
+    buttons[1].addEventListener('touchstart', e => {
+      e.preventDefault()
       if (options.cancel) {
         options.cancel(divElem)
       }
       document.body.removeChild(divElem)
-    }
+    })
   }
 
   return divElem

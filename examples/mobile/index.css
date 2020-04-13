@@ -7,6 +7,7 @@ main {
   width: 10rem;
   margin: 0 auto;
   font-size: 0.37rem;
+  padding-bottom: 1rem;
 }
 
 .btns {
@@ -20,6 +21,9 @@ main {
   top: 0;
   left: 0;
   z-index: 1000;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .btns button {
@@ -30,6 +34,7 @@ main {
   border: 1px solid #000;
   font-size: 0.43rem;
   background: #fff;
+  border-radius: 0.15rem;
 }
 
 .textarea {
@@ -52,18 +57,24 @@ main {
 .tableBox {
   width: 10rem;
   overflow-x: auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 table, th, td {
-  border: 1px solid #000;
+  border-bottom: 1px solid #000;
   border-collapse: collapse;
-  /* word-break: break-all; */
   font-size: 0.32rem;
-  text-align: justify;
+  text-align: left;
 }
 
 table {
   width: 10rem;
+}
+
+td {
+  text-align: justify;
 }
 
 table, th:first-child, td:first-child {

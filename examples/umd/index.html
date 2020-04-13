@@ -2,10 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Proofread Examples Demo</title>
+    <title>Proofread Examples UMD</title>
     <link rel="stylesheet" href="../../dist/proofread.css?v=20200412211530">
     <link rel="stylesheet" href="./index.css?v=20200412211530">
     <link rel="stylesheet" href="./dialog.css?v=20200412211530">
+    <script>
+      if (/(iPhone|iPad|iPod|iOS|Android|micromessenger)/ig.test(window.navigator.userAgent)) {
+        window.location.href = '/proofread/examples/mobile/'
+      }
+    </script>
   </head>
   <body>
     <main>
