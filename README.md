@@ -7,7 +7,7 @@
 
 ## 预览
 
-[请狠狠地点这里](https://luobin01.github.io/proofread/examples/umd/)
+PC端/移动端：[请狠狠地点这里](https://luobin01.github.io/proofread/examples/umd/)
 
 ## 示例
 
