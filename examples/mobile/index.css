@@ -44,9 +44,9 @@ main {
 
 .textarea p {
   text-align: justify;
-  margin-bottom: 0.4rem;
-  font-size: 0.43rem;
-  line-height: 0.8rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.48rem;
+  line-height: 0.75rem;
 }
 
 .tableBox {

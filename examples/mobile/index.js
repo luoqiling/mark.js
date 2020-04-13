@@ -10,10 +10,6 @@ const proofreadList = [
   {"content":"就是多种文化汇合并存的地方。\n广东历史久远，","startOffset":288,"endOffset":310,"length":22,"points":[],"key":"c04uoxcv1s5ml","type":"modify"}
 ]
 
-dialog({
-  content: '<span>先</span><a href="javascript:;"></a><span>秦</span><a href="javascript:;"></a><span>古</span><a href="javascript:;"></a><span>籍</span><a href="javascript:;"></a><span>对</span><a href="javascript:;"></a><span>长</span><a href="javascript:;"></a><span>江</span><a href="javascript:;"></a><span>以</span><a href="javascript:;"></a><span>南</span><a href="javascript:;"></a><span>沿</span><a href="javascript:;"></a><span>海</span><a href="javascript:;"></a><span>一</span><a href="javascript:;"></a><span>带</span><a href="javascript:;"></a><span>的</span><a href="javascript:;"></a><span>部</span><a href="javascript:;"></a><span>族</span>'
-})
-
 proofread.automark(proofreadList, {
   afterEach(data) {
     console.log(JSON.stringify(data))
