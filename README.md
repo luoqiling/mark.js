@@ -35,7 +35,7 @@ const data = proofread.mark('exchange', { points })
   endOffset: number     // 光标结点
   length: number        // 选中文字的长度
   points: number[]      // 选中文字的互换位置
-  key: number           // 唯一标识
+  key: string           // 唯一标识
   type: string          // 校对类型
 }
 ````
