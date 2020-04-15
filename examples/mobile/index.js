@@ -7,7 +7,8 @@ const proofreadList = [
   {"content":"缺漏","startOffset":15,"endOffset":15,"length":0,"points":[],"key":"VMgKKzeqPFEvF","type":"missing"},
   {"content":"古代“粤”、“越”通用","startOffset":73,"endOffset":84,"length":11,"points":[4,5],"key":"jQOuMQKBNYtlL","type":"exchange"},
   {"content":"南越","startOffset":155,"endOffset":157,"length":2,"points":[0],"key":"TIMNsN45JcoX7","type":"exchange"},
-  {"content":"就是多种文化汇合并存的地方。\n广东历史久远，","startOffset":288,"endOffset":310,"length":22,"points":[],"key":"c04uoxcv1s5ml","type":"modify"}
+  {"content":"就是多种文化汇合并存的地方。\n广东历史久远，","startOffset":288,"endOffset":310,"length":22,"points":[],"key":"c04uoxcv1s5ml","type":"modify"},
+  {"content":"南沿海一带的部族","startOffset":93,"endOffset":101,"length":8,"points":[],"key":"I962gtLAEXwkO","type":"delete"}
 ]
 
 proofread.automark(proofreadList, {
@@ -21,10 +22,17 @@ proofread.automark(proofreadList, {
 })
 
 var $modify = document.querySelector('#modify')
+var $delete = document.querySelector('#delete')
 var $exchange = document.querySelector('#exchange')
 
 $modify.addEventListener('click', () => {
   const data = proofread.mark('modify')
+  console.log(JSON.stringify(data))
+  renderTbody(data)
+})
+
+$delete.addEventListener('click', () => {
+  const data = proofread.mark('delete')
   console.log(JSON.stringify(data))
   renderTbody(data)
 })

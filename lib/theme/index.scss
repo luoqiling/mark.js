@@ -5,6 +5,11 @@ mark {
   color: inherit;
 }
 
+#{$alias}-delete {
+  color: orange !important;
+  text-decoration: line-through !important;
+}
+
 #{$alias}-modify {
   background-color: red !important;
 }

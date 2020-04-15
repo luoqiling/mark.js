@@ -3,6 +3,11 @@ mark {
   color: inherit;
 }
 
+.proofread-delete {
+  color: orange !important;
+  text-decoration: line-through !important;
+}
+
 .proofread-modify {
   background-color: red !important;
 }

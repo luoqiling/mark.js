@@ -25,10 +25,19 @@ declare namespace Proofread {
     startRange: { node: Node, offset: number },
     endRange: { node: Node, offset: number }
   }
+
+  export interface ConstructorOptions {
+    tagName?: string
+    debug?: boolean
+  }
+
+  export interface CreateOptions {
+    selection?: Selection
+  }
 }
 
 declare class Proofread {
-  constructor(textareaElem: HTMLElement | null)
+  constructor(textareaElem: HTMLElement | null, options?: Proofread.ConstructorOptions)
 
   public getContent(): string
 
@@ -37,6 +46,8 @@ declare class Proofread {
   public mark(type: string, options?: Proofread.IOptions): Proofread.IProofreadData
 
   public automark(list: Array<Proofread.IProofreadData>, options?: Proofread.ISearchOptions): void
+
+  public create(tagName: string, options?: Proofread.CreateOptions): NodeListOf<HTMLElement>
 
   private textareaElem: HTMLElement
 

@@ -3,6 +3,7 @@ import Proofread, { IProofreadData } from '../../index'
 import '../../lib/theme/index.scss'
 
 const $modify: HTMLElement | null = document.querySelector('#modify')
+const $delete: HTMLElement | null = document.querySelector('#delete')
 const $exchange: HTMLElement | null = document.querySelector('#exchange')
 const $tbody: HTMLElement | null = document.querySelector('#tbody')
 const proofread = new Proofread(document.querySelector('#textarea'))
@@ -15,7 +16,8 @@ const proofreadList: Array<IProofreadData> = [
   {"content":"缺漏","startOffset":15,"endOffset":15,"length":0,"points":[],"key":"VMgKKzeqPFEvF","type":"missing"},
   {"content":"古代“粤”、“越”通用","startOffset":73,"endOffset":84,"length":11,"points":[4,5],"key":"jQOuMQKBNYtlL","type":"exchange"},
   {"content":"南越","startOffset":155,"endOffset":157,"length":2,"points":[0],"key":"TIMNsN45JcoX7","type":"exchange"},
-  {"content":"就是多种文化汇合并存的地方。\n广东历史久远，","startOffset":288,"endOffset":310,"length":22,"points":[],"key":"c04uoxcv1s5ml","type":"modify"}
+  {"content":"就是多种文化汇合并存的地方。\n广东历史久远，","startOffset":288,"endOffset":310,"length":22,"points":[],"key":"c04uoxcv1s5ml","type":"modify"},
+  {"content":"南沿海一带的部族","startOffset":93,"endOffset":101,"length":8,"points":[],"key":"I962gtLAEXwkO","type":"delete"}
 ]
 
 proofread.automark(proofreadList, {
@@ -27,6 +29,14 @@ proofread.automark(proofreadList, {
     console.log('automark end')
   }
 })
+
+if ($delete) {
+  $delete.addEventListener('click', () => {
+    const data = proofread.mark('delete')
+    console.log(JSON.stringify(data))
+    renderTbody(data)
+  })
+}
 
 if ($modify) {
   $modify.addEventListener('click', () => {
