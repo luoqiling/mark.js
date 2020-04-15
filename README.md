@@ -7,7 +7,9 @@
 
 ## 预览
 
-PC端/移动端：[请狠狠地点这里](https://luobin01.github.io/proofread/examples/umd/)
+校对（PC端/移动端）：[请狠狠地点这里](https://luobin01.github.io/proofread/examples/umd/)
+
+自定义插入标签（PC端）：[请狠狠地点这里](https://luobin01.github.io/proofread/examples/customize/)
 
 ## 示例
 
