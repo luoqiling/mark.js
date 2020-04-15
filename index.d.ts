@@ -47,7 +47,7 @@ declare class Proofread {
 
   public automark(list: Array<Proofread.IProofreadData>, options?: Proofread.ISearchOptions): void
 
-  public create(tagName: string, options?: Proofread.CreateOptions): NodeListOf<HTMLElement>
+  public create(tagName?: string, options?: Proofread.CreateOptions): NodeListOf<HTMLElement>
 
   private textareaElem: HTMLElement
 
