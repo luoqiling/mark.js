@@ -3,13 +3,13 @@
 ## 简介
 `mark.js`可用于标记选中的文字，目前提供的标记类型有文字涂改、文字缺漏、文字删除和文字互换。
 
-结合工具[`draw`](https://github.com/luobin01/draw)可以校对文章中的图片和视频。
+结合工具[`draw`](https://github.com/luobin01/draw)可以标记文章中的图片和视频。
 
 ## 预览
 
-校对（PC端/移动端）：[请狠狠地点这里](https://luobin01.github.io/proofread/examples/umd/)
+校对（PC端/移动端）：[请狠狠地点这里](https://luobin01.github.io/mark.js/examples/umd/)
 
-自定义插入标签（PC端）：[请狠狠地点这里](https://luobin01.github.io/proofread/examples/customize/)
+自定义插入标签（PC端）：[请狠狠地点这里](https://luobin01.github.io/mark.js/examples/customize/)
 
 ## 示例
 
@@ -41,7 +41,7 @@ const data = m.mark('exchange', { points })
   length: number        // 选中文字的长度
   points: number[]      // 选中文字的互换位置
   key: string           // 唯一标识
-  type: string          // 校对类型
+  type: string          // 标记类型
 }
 ````
 
