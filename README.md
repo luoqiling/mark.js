@@ -31,7 +31,7 @@ const data = m.mark('delete')
 const data = m.mark('exchange', { points })
 ````
 
-## 返回的数据
+## 标记数据
 
 ````
 {
