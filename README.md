@@ -1,7 +1,7 @@
-# proofread
+# mark.js
 
 ## 简介
-`proofread`是一个校对工具，可用于标记选中的文字，目前提供的校对类型有文字涂改、文字缺漏、文字删除和文字互换。
+`mark.js`可用于标记选中的文字，目前提供的标记类型有文字涂改、文字缺漏、文字删除和文字互换。
 
 结合工具[`draw`](https://github.com/luobin01/draw)可以校对文章中的图片和视频。
 
@@ -14,24 +14,24 @@
 ## 示例
 
 ````
-const proofread = new Proofread(document.querySelector('xxx'), {
+const m = new Mark(document.querySelector('xxx'), {
   tagName: 'mark'
 })
 
 // 自动标记
-proofread.automark(proofreadDataList)
+m.automark(dataList)
 
 // 文字涂改、文字缺漏
-const data = proofread.mark('modify')
+const data = m.mark('modify')
 
 // 文字删除
-const data = proofread.mark('delete')
+const data = m.mark('delete')
 
 // 文字互换
-const data = proofread.mark('exchange', { points })
+const data = m.mark('exchange', { points })
 ````
 
-## 校对数据
+## 返回的数据
 
 ````
 {
