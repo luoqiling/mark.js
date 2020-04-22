@@ -1,16 +1,16 @@
 import './index.scss'
-import Proofread, { IProofreadData } from '../../index'
+import Mark, { IMarkData } from '../../index'
 import '../../lib/theme/index.scss'
 
 const $modify: HTMLElement | null = document.querySelector('#modify')
 const $delete: HTMLElement | null = document.querySelector('#delete')
 const $exchange: HTMLElement | null = document.querySelector('#exchange')
 const $tbody: HTMLElement | null = document.querySelector('#tbody')
-const proofread = new Proofread(document.querySelector('#textarea'))
+const instance = new Mark(document.querySelector('#textarea'))
 
-console.log(proofread.innerText())
+console.log(instance.innerText())
 
-const proofreadList: Array<IProofreadData> = [
+const proofreadList: Array<IMarkData> = [
   {"content":"广东是岭南文化","startOffset":0,"endOffset":7,"length":7,"points":[],"key":"wLe2DLTAJAxGG","type":"modify"},
   {"content":"缺漏","startOffset":14,"endOffset":14,"length":0,"points":[],"key":"nVoiFGpugJa2H","type":"missing"},
   {"content":"缺漏","startOffset":15,"endOffset":15,"length":0,"points":[],"key":"VMgKKzeqPFEvF","type":"missing"},
@@ -20,8 +20,8 @@ const proofreadList: Array<IProofreadData> = [
   {"content":"南沿海一带的部族","startOffset":93,"endOffset":101,"length":8,"points":[],"key":"I962gtLAEXwkO","type":"delete"}
 ]
 
-proofread.automark(proofreadList, {
-  afterEach(data: IProofreadData) {
+instance.automark(proofreadList, {
+  afterEach(data: IMarkData) {
     console.log(JSON.stringify(data))
     renderTbody(data)
   },
@@ -32,7 +32,7 @@ proofread.automark(proofreadList, {
 
 if ($delete) {
   $delete.addEventListener('click', () => {
-    const data = proofread.mark('delete')
+    const data = instance.mark('delete')
     console.log(JSON.stringify(data))
     renderTbody(data)
   })
@@ -40,7 +40,7 @@ if ($delete) {
 
 if ($modify) {
   $modify.addEventListener('click', () => {
-    const data = proofread.mark('modify')
+    const data = instance.mark('modify')
     console.log(JSON.stringify(data))
     renderTbody(data)
   })
@@ -49,7 +49,7 @@ if ($modify) {
 if ($exchange) {
   $exchange.addEventListener('click', () => {
     let points: Array<number> = []
-    const content = proofread.getContent()
+    const content = instance.getContent()
     const words = content.split('').concat()
     if (words.length > 0) {
       let str = ''
@@ -72,7 +72,7 @@ if ($exchange) {
             }
           })
           if (points.length > 0) {
-            const data = proofread.mark('exchange', { points })
+            const data = instance.mark('exchange', { points })
             console.log(JSON.stringify(data))
             renderTbody(data)
           }
@@ -136,7 +136,7 @@ function dialog(options: any){
   return divElem
 }
 
-function renderTbody(data: IProofreadData) {
+function renderTbody(data: IMarkData) {
   if ($tbody) {
     const innerStr = $tbody.innerHTML
     const str =

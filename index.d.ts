@@ -1,4 +1,4 @@
-declare namespace Proofread {
+declare namespace Mark {
   export interface IData {
     content: string
     startOffset: number
@@ -6,7 +6,7 @@ declare namespace Proofread {
     length: number
   }
 
-  export interface IProofreadData extends IData {
+  export interface IMarkData extends IData {
     points: number[]
     key: string
     type: string
@@ -17,7 +17,7 @@ declare namespace Proofread {
   }
 
   export interface ISearchOptions {
-    afterEach?(data: IProofreadData): void
+    afterEach?(data: IMarkData): void
     after?(): void
   }
 
@@ -36,34 +36,34 @@ declare namespace Proofread {
   }
 }
 
-declare class Proofread {
-  constructor(textareaElem: HTMLElement | null, options?: Proofread.ConstructorOptions)
+declare class Mark {
+  constructor(textareaElem: HTMLElement | null, options?: Mark.ConstructorOptions)
 
   public getContent(): string
 
   public innerText(): string
 
-  public mark(type: string, options?: Proofread.IOptions): Proofread.IProofreadData
+  public mark(type: string, options?: Mark.IOptions): Mark.IMarkData
 
-  public automark(list: Array<Proofread.IProofreadData>, options?: Proofread.ISearchOptions): void
+  public automark(list: Array<Mark.IMarkData>, options?: Mark.ISearchOptions): void
 
-  public create(tagName?: string, options?: Proofread.CreateOptions): NodeListOf<HTMLElement>
+  public create(tagName?: string, options?: Mark.CreateOptions): NodeListOf<HTMLElement>
 
   private textareaElem: HTMLElement
 
-  private innerData: Proofread.IOptions
+  private innerData: Mark.IOptions
 
-  private _mark(type: string): Proofread.IProofreadData
+  private _mark(type: string): Mark.IMarkData
 
   private _getElems(): NodeListOf<HTMLElement>
 
-  private _setElems(elems: NodeListOf<HTMLElement>, data: Proofread.IProofreadData): void
+  private _setElems(elems: NodeListOf<HTMLElement>, data: Mark.IMarkData): void
 
-  private _drawExchange(data: Proofread.IProofreadData): void
+  private _drawExchange(data: Mark.IMarkData): void
 
-  private _getData(startElem: HTMLElement, endElem: HTMLElement): Proofread.IData
+  private _getData(startElem: HTMLElement, endElem: HTMLElement): Mark.IData
 
-  private _getRangeData(data: Proofread.IProofreadData): Proofread.IRangeData
+  private _getRangeData(data: Mark.IMarkData): Mark.IRangeData
 }
 
-export = Proofread
+export = Mark

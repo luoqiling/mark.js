@@ -1,7 +1,7 @@
-var proofread = new Proofread(document.querySelector('#textarea'))
+var instance = new Mark(document.querySelector('#textarea'))
 var $tbody = document.querySelector('#tbody')
 
-const proofreadList = [
+const dataList = [
   {"content":"广东是岭南文化","startOffset":0,"endOffset":7,"length":7,"points":[],"key":"wLe2DLTAJAxGG","type":"modify"},
   {"content":"缺漏","startOffset":14,"endOffset":14,"length":0,"points":[],"key":"nVoiFGpugJa2H","type":"missing"},
   {"content":"缺漏","startOffset":15,"endOffset":15,"length":0,"points":[],"key":"VMgKKzeqPFEvF","type":"missing"},
@@ -11,7 +11,7 @@ const proofreadList = [
   {"content":"南沿海一带的部族","startOffset":93,"endOffset":101,"length":8,"points":[],"key":"I962gtLAEXwkO","type":"delete"}
 ]
 
-proofread.automark(proofreadList, {
+instance.automark(dataList, {
   afterEach(data) {
     console.log(JSON.stringify(data))
     renderTbody(data)
@@ -26,20 +26,20 @@ var $delete = document.querySelector('#delete')
 var $exchange = document.querySelector('#exchange')
 
 $modify.addEventListener('click', () => {
-  const data = proofread.mark('modify')
+  const data = instance.mark('modify')
   console.log(JSON.stringify(data))
   renderTbody(data)
 })
 
 $delete.addEventListener('click', () => {
-  const data = proofread.mark('delete')
+  const data = instance.mark('delete')
   console.log(JSON.stringify(data))
   renderTbody(data)
 })
 
 $exchange.addEventListener('click', () => {
   let points = []
-  const content = proofread.getContent()
+  const content = instance.getContent()
   const words = content.split('').concat()
   if (words.length > 0) {
     let str = ''
@@ -62,7 +62,7 @@ $exchange.addEventListener('click', () => {
           }
         })
         if (points.length > 0) {
-          const data = proofread.mark('exchange', { points })
+          const data = instance.mark('exchange', { points })
           console.log(JSON.stringify(data))
           renderTbody(data)
         }

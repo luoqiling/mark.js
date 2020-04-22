@@ -5,9 +5,9 @@ module.exports = {
   entry: path.resolve(__dirname, '../index.js'),
   mode: NODE_ENV,
   output: {
-    filename: NODE_ENV === 'development' ? 'proofread.js' : 'proofread.min.js',
+    filename: NODE_ENV === 'development' ? 'mark.js' : 'mark.min.js',
     path: path.resolve(__dirname, '../dist'),
-    library: 'Proofread',
+    library: 'Mark',
     libraryExport: 'default',
     libraryTarget: 'umd'
   },

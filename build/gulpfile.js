@@ -10,7 +10,7 @@ sass.compiler = require('node-sass')
 gulp.task('sass', () => {
   return gulp.src(path.resolve(__dirname, '../lib/theme/**/*.scss'))
     .pipe(sass({ outputStyle: NODE_ENV === 'development' ? 'expanded' : 'compressed' }).on('error', sass.logError))
-    .pipe(rename(path => { path.basename = NODE_ENV === 'development' ? 'proofread' : 'proofread.min' }))
+    .pipe(rename(path => { path.basename = NODE_ENV === 'development' ? 'mark' : 'mark.min' }))
     .pipe(gulp.dest(path.resolve(__dirname, '../dist')))
 })
 
