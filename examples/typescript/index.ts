@@ -1,5 +1,5 @@
 import './index.scss'
-import Mark, { IMarkData } from '../../index'
+import Mark, { IMarkData } from '../../'
 import '../../lib/theme/index.scss'
 
 const $modify: HTMLElement | null = document.querySelector('#modify')
