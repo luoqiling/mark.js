@@ -63,7 +63,7 @@ declare class Mark {
 
   private _getData(startElem: HTMLElement, endElem: HTMLElement): Mark.IData
 
-  private _getRangeData(data: Mark.IMarkData): Mark.IRangeData
+  private _getRangeData(startOffset: number, endOffset: number): Mark.IRangeData
 }
 
 export = Mark

@@ -470,7 +470,7 @@
           var draw = function draw() {
             var data = list[index];
 
-            var rangeData = _this2._getRangeData(data);
+            var rangeData = _this2._getRangeData(data.startOffset, data.endOffset);
 
             var selection = window.getSelection();
             var range = window.document.createRange();
@@ -643,7 +643,7 @@
         var endOffset = null;
         var length = null;
 
-        var count = function count(nodes, startElem, endElem) {
+        var count = function count(nodes) {
           for (var i = 0; i < nodes.length; i++) {
             var node = nodes[i];
 
@@ -667,7 +667,7 @@
                 content += t;
               }
 
-              count(node.childNodes, startElem, endElem);
+              count(node.childNodes);
 
               if (!endOffset && hasNodeName(node, 'p')) {
                 sum++;
@@ -677,7 +677,7 @@
           }
         };
 
-        count(this.textareaElem.childNodes, startElem, endElem);
+        count(this.textareaElem.childNodes);
         return {
           content: content.trim(),
           startOffset: startOffset,
@@ -687,7 +687,7 @@
       }
     }, {
       key: "_getRangeData",
-      value: function _getRangeData(data) {
+      value: function _getRangeData(startOffset, endOffset) {
         var sum = 0;
         var startRange = null;
         var endRange = null;
@@ -705,16 +705,16 @@
               var text = removeExtraSpace(node.nodeValue);
               sum += text.length;
 
-              if (!startRange && sum >= data.startOffset) {
-                var offset = data.startOffset - sum2;
+              if (!startRange && sum >= startOffset) {
+                var offset = startOffset - sum2;
                 startRange = {
                   node: node,
                   offset: offset < 0 ? 0 : offset
                 };
               }
 
-              if (!endRange && sum >= data.endOffset) {
-                var _offset = data.endOffset - sum2;
+              if (!endRange && sum >= endOffset) {
+                var _offset = endOffset - sum2;
 
                 endRange = {
                   node: node,
