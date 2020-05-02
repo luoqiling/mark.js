@@ -167,7 +167,6 @@
     }, {
       key: "_create",
       value: function _create(selection) {
-        var opt = this.options;
         var newNodeList = [];
 
         if (selection.rangeCount > 0) {
@@ -182,14 +181,7 @@
               range.surroundContents(newnode);
               newNodeList.push(newnode);
             } else {
-              var newRange = this._getRangeBy(range);
-
-              if (opt.debug) {
-                log(this._createDOMTree(range), 'tree');
-                log(newRange, 'newRange');
-              }
-
-              var arr = this._surroundCrossContents(newRange);
+              var arr = this._surroundCrossContents(range);
 
               newNodeList = newNodeList.concat(arr);
             }
@@ -257,12 +249,22 @@
       value: function _surroundCrossContents(range) {
         var _this = this;
 
-        var nodeList = range.nodeList;
-        var startkey = range.startkey;
-        var endkey = range.endkey;
-        var startOffset = range.startOffset;
-        var endOffset = range.endOffset;
+        var opt = this.options;
+
+        var newRange = this._getRangeBy(range);
+
+        var nodeList = newRange.nodeList;
+        var startkey = newRange.startkey;
+        var endkey = newRange.endkey;
+        var startOffset = newRange.startOffset;
+        var endOffset = newRange.endOffset;
         var newNodeList = [];
+
+        if (opt.debug) {
+          log(this._createDOMTree(range), 'tree');
+          log(newRange, 'newRange');
+        }
+
         nodeList.forEach(function (object) {
           var key = Object.keys(object)[0];
           var node = object[key];
