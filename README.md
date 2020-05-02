@@ -7,9 +7,9 @@
 
 ## 预览
 
-校对（PC端/移动端）：[请狠狠地点这里](https://luobin01.github.io/mark.js/examples/umd/)
+校对（PC端/移动端）：[请狠狠地点这里](https://luoqiling.github.io/mark.js/examples/umd/)
 
-自定义插入标签（PC端）：[请狠狠地点这里](https://luobin01.github.io/mark.js/examples/customize/)
+自定义插入标签（PC端）：[请狠狠地点这里](https://luoqiling.github.io/mark.js/examples/customize/)
 
 ## 示例
 
