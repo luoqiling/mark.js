@@ -114,32 +114,6 @@
 
     return text;
   }
-  function hasChild(parent, targetNode) {
-    var res;
-
-    function cb(parent) {
-      var childNodes = parent.childNodes;
-
-      for (var i = 0; i < childNodes.length; i++) {
-        var child = childNodes[i];
-
-        if (child === targetNode) {
-          res = true;
-        }
-
-        if (res !== undefined) {
-          break;
-        }
-
-        if (child.nodeType === 1) {
-          cb(child);
-        }
-      }
-    }
-
-    cb(parent);
-    return res === undefined ? false : res;
-  }
   function log(content, name) {
     var str = function str(type) {
       return "---------- ".concat(name, " ").concat(type ? 'start' : 'end', " ----------");
@@ -263,7 +237,7 @@
               nodeList.push(_defineProperty({}, k, child));
             }
 
-            if (child.nodeType === 1 && (hasChild(child, snode) || hasChild(child, enode))) {
+            if (child.nodeType === 1 && (child.contains(snode) || child.contains(enode))) {
               cb(child, k);
             }
           }
@@ -295,9 +269,7 @@
           var pnode = node.parentNode;
           var value = node.nodeValue;
 
-          var newnode = _this._createMarkElement(); // console.log(key, node)
-          // console.log('compare', compare(key, startkey), compare(key, endkey))
-
+          var newnode = _this._createMarkElement();
 
           if (_this._compare(key, startkey) > 0 && _this._compare(key, endkey) < 0) {
             if (node.nodeType === 3) {
