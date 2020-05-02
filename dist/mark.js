@@ -176,7 +176,7 @@
           var enode = range.endContainer;
 
           if (snode && enode) {
-            if (snode === enode) {
+            if (snode === enode || snode.parentNode === enode.parentNode) {
               var newnode = this._createMarkElement();
 
               range.surroundContents(newnode);
