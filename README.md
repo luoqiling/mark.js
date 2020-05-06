@@ -3,7 +3,7 @@
 ## 简介
 `mark.js`可用于标记选中的文字，目前提供的标记类型有文字涂改、文字缺漏、文字删除和文字互换。 
 
-结合工具[`draw`](https://github.com/luobin01/draw)可以标记文章中的图片和视频。
+结合工具[`draw`](https://github.com/luoqiling/draw)可以标记文章中的图片和视频。
 
 ## 预览
 
