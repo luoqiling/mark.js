@@ -26,21 +26,6 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
-
-    return obj;
-  }
-
   function _inherits(subClass, superClass) {
     if (typeof superClass !== "function" && superClass !== null) {
       throw new TypeError("Super expression must either be null or a function");
@@ -197,40 +182,41 @@
         return newNodeList;
       }
     }, {
-      key: "_getRangeBy",
-      value: function _getRangeBy(range) {
+      key: "_getNewRange",
+      value: function _getNewRange(range) {
         var cnode = range.commonAncestorContainer;
         var snode = range.startContainer;
         var enode = range.endContainer;
         var nodeList = [];
-        var startkey = '';
-        var endkey = '';
+        var start = false;
+        var end = false;
 
-        function cb(parent, key) {
+        function cb(parent) {
           var childNodes = parent.childNodes;
 
           for (var i = 0; i < childNodes.length; i++) {
-            var k = key ? "".concat(key, "-").concat(i) : "".concat(i);
             var child = childNodes[i];
 
-            if (endkey !== '') {
+            if (end) {
               break;
             }
 
             if (child === snode) {
-              startkey = k;
+              start = true;
             }
 
             if (child === enode) {
-              endkey = k;
+              end = true;
             }
 
-            if (startkey !== '' && !(child.nodeType === 3 && hasOnlyLinefeed(child.nodeValue))) {
-              nodeList.push(_defineProperty({}, k, child));
-            }
-
-            if (child.nodeType === 1 && (child.contains(snode) || child.contains(enode))) {
-              cb(child, k);
+            if (child.nodeType === 1) {
+              if (child.contains(snode) || child.contains(enode)) {
+                cb(child);
+              } else if (start) {
+                nodeList.push(child);
+              }
+            } else if (child.nodeType === 3 && !hasOnlyLinefeed(child.nodeValue) && start) {
+              nodeList.push(child);
             }
           }
         }
@@ -238,8 +224,6 @@
         cb(cnode);
         return {
           nodeList: nodeList,
-          startkey: startkey,
-          endkey: endkey,
           startOffset: range.startOffset,
           endOffset: range.endOffset
         };
@@ -251,29 +235,53 @@
 
         var opt = this.options;
 
-        var newRange = this._getRangeBy(range);
+        var newRange = this._getNewRange(range);
 
         var nodeList = newRange.nodeList;
-        var startkey = newRange.startkey;
-        var endkey = newRange.endkey;
         var startOffset = newRange.startOffset;
         var endOffset = newRange.endOffset;
+        var length = nodeList.length;
         var newNodeList = [];
 
         if (opt.debug) {
-          log(this._createDOMTree(range), 'tree');
           log(newRange, 'newRange');
         }
 
-        nodeList.forEach(function (object) {
-          var key = Object.keys(object)[0];
-          var node = object[key];
+        nodeList.forEach(function (node, index) {
           var pnode = node.parentNode;
           var value = node.nodeValue;
 
           var newnode = _this._createMarkElement();
 
-          if (_this._compare(key, startkey) > 0 && _this._compare(key, endkey) < 0) {
+          if (index === 0) {
+            if (node.nodeType === 3) {
+              var siblingnode = node.nextSibling;
+              newnode.innerText = value.substr(startOffset);
+              node.nodeValue = value.substr(0, startOffset);
+
+              if (siblingnode) {
+                pnode.insertBefore(newnode, siblingnode);
+              } else {
+                pnode.appendChild(newnode);
+              }
+
+              newNodeList.push(newnode);
+            }
+          } else if (index === length - 1) {
+            if (node.nodeType === 3) {
+              var _siblingnode = node.previousSibling;
+              newnode.innerText = value.substr(0, endOffset);
+              node.nodeValue = value.substr(endOffset);
+
+              if (_siblingnode) {
+                insertAfter(newnode, _siblingnode);
+              } else {
+                pnode.insertBefore(newnode, node);
+              }
+
+              newNodeList.push(newnode);
+            }
+          } else {
             if (node.nodeType === 3) {
               newnode.innerText = value;
               pnode.replaceChild(newnode, node);
@@ -284,60 +292,9 @@
             }
 
             newNodeList.push(newnode);
-          } else {
-            if (node.nodeType === 3) {
-              var siblingnode;
-
-              if (key === startkey) {
-                siblingnode = node.nextSibling;
-                newnode.innerText = value.substr(startOffset);
-                node.nodeValue = value.substr(0, startOffset);
-
-                if (siblingnode) {
-                  pnode.insertBefore(newnode, siblingnode);
-                } else {
-                  pnode.appendChild(newnode);
-                }
-
-                newNodeList.push(newnode);
-              } else if (key === endkey) {
-                siblingnode = node.previousSibling;
-                newnode.innerText = value.substr(0, endOffset);
-                node.nodeValue = value.substr(endOffset);
-
-                if (siblingnode) {
-                  insertAfter(newnode, siblingnode);
-                } else {
-                  pnode.insertBefore(newnode, node);
-                }
-
-                newNodeList.push(newnode);
-              }
-            }
           }
         });
         return newNodeList;
-      }
-    }, {
-      key: "_compare",
-      value: function _compare(key1, key2) {
-        var k1 = key1.split('-');
-        var k2 = key2.split('-');
-        var min = k1.length - k2.length ? k1.length : k2.length;
-        var res;
-
-        for (var i = 0; i < min; i++) {
-          var num = parseInt(k1[i], 10) - parseInt(k2[i], 10);
-
-          if (num === 0 && i !== min - 1) {
-            continue;
-          } else {
-            res = num;
-            break;
-          }
-        }
-
-        return res;
       }
     }, {
       key: "_createMarkElement",
@@ -345,45 +302,6 @@
         var tagName = this.tagName;
         var node = document.createElement(tagName);
         return node;
-      }
-    }, {
-      key: "_createDOMTree",
-      value: function _createDOMTree(range) {
-        var cnode = range.commonAncestorContainer;
-        var snode = range.startContainer;
-        var enode = range.endContainer;
-        var constructor = {};
-        var startkey = '';
-        var endkey = '';
-
-        function cb(parent, obj, key) {
-          parent.childNodes.forEach(function (child, index) {
-            var k = key ? "".concat(key, "-").concat(index) : "".concat(index);
-
-            if (child === snode) {
-              startkey = k;
-            }
-
-            if (child === enode) {
-              endkey = k;
-            }
-
-            obj[k] = {};
-            obj[k].node = child;
-
-            if (child.nodeType !== 3) {
-              obj[k].child = {};
-              cb(child, obj[k].child, k);
-            }
-          });
-        }
-
-        cb(cnode, constructor);
-        return {
-          constructor: constructor,
-          startkey: startkey,
-          endkey: endkey
-        };
       }
     }]);
 
